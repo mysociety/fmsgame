@@ -6,11 +6,15 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from django.template import RequestContext
+from django.views.generic.simple import direct_to_template
+
 import fixmystreet
 import datetime
 import GeoRSS
 
 import settings
+from scoreboard import models as scoreboard_models
 
 from BeautifulSoup import BeautifulSoup
 
@@ -29,19 +33,34 @@ def issue(request, issue_id=None):
                  'photo': '', 
                 }
         state = request.POST.get('state')
+
         if state == 'fixed':
             data['fixed'] = 1
             data['update'] = 'fmsgame: this is fixed'
+            new_points = 3
         elif state == 'notfixed':
             data['update'] = 'fmsgame: this is not fixed'
+            new_points = 2
         elif state == 'notfound':
             data['update'] = "fmsgame: this couldn't be found"
+            new_points = 1
         else:
             raise Http404
+
         response = urllib2.urlopen(target_url, urllib.urlencode(data))
+
+        score_obj, created = scoreboard_models.Score.objects.get_or_create(user=request.user)
+#        import pdb;pdb.set_trace()
+        old_score = score_obj.score or 0
+        score_obj.score = old_score + new_points
+        score_obj.save()
+
         # FIXME handle the response    
         return HttpResponseRedirect(reverse('geolocate'))
-    return render_to_response('issue.html')
+
+    context = context_instance=RequestContext(request)
+
+    return render_to_response('issue.html', {}, context)
 
 def find_issues(request):
 
@@ -93,3 +112,13 @@ def find_issues(request):
         content = rss.to_xml(),
         content_type = 'application/rss+xml'
     )
+
+def score(request):
+    context = RequestContext(request)
+    score = request.user.score_set.all()[0].score
+    my_range = range(score)
+    return render_to_response('score.html', {'score': score, 'range': my_range}, context) 
+
+def scoreboard(request):
+    context = RequestContext(request)
+    return render_to_response('scoreboard.html', {}, context) 

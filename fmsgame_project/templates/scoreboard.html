@@ -5,18 +5,20 @@
         <meta name="viewport" content="initial-scale=1.0, width=device-width, height=device-height, minimum-scale=1.0" />        
     </head>
     <body>
-        <h1>Your Score</h1>
+        <h1>Scoreboard</h1>
         
-        <p>You have {{ score }} points.</p>
+        <p>You have {{ request.user.score_set.all.0.score }} points.</p>
         
         <!--
         { if score == 0 }
             print "Haven't started"
         }
         -->
-        {% for i in range  %}
+        <!--
+        { for user-score  }
             <img src="/static/fmsgame_trophy_score.png" alt="1" />
-        {% endfor %}
+        { endfor }
+        -->
         <p>
             Back to <a href="/geolocate">the game!</a>
         </p>

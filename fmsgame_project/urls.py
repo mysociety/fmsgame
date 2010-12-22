@@ -27,8 +27,10 @@ urlpatterns = patterns('',
     ( r'^issue/(?P<issue_id>[\d]+)/$', views.issue ),
     
     # openid login/registration
-    (r'^openid/',              include( 'django_openid_auth.urls' )),    
-)
+    (r'^openid/',              include( 'django_openid_auth.urls' )),
+    (r'^my_score', views.score ),                   
+    (r'^scoreboard', views.scoreboard ),
+                       )
 
 if settings.SERVE_STATIC_FILES:
     urlpatterns += patterns('',

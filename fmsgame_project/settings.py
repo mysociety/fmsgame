@@ -123,6 +123,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django_openid_auth',
+    'scoreboard',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
