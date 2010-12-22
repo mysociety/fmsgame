@@ -12,6 +12,8 @@ import GeoRSS
 
 import settings
 
+from BeautifulSoup import BeautifulSoup
+
 @login_required
 def issue(request, issue_id=None):
     if request.method == 'POST':
@@ -59,10 +61,17 @@ def find_issues(request):
 
         issue_url = request.build_absolute_uri( '/issue/' + str(issue['id']) )
 
+        description_start = '<a href="' + issue_url + '">Click to win points!!</a><br><br>'
+
+        # Not sure why this is not working... should strip out the 'Report on FixMyStreet' link
+        # description_end = ''.join(BeautifulSoup( issue['summary'] ).findAll( lambda tag: tag.name != 'a' ))
+
+        description_end = ' '.join(BeautifulSoup( issue['summary'] ).findAll( text = True ))
+
         item = GeoRSS.GeoRSSItem(
             title        = issue['name'],
             link         = issue_url,
-            description  = '<a href="' + issue_url + '">Check this issue</a>',
+            description  = description_start + description_end,
             guid         = GeoRSS.Guid( issue_url ),
             pubDate      = datetime.datetime.now(),    # FIXME
             geo_lat    = str(issue['lat']),

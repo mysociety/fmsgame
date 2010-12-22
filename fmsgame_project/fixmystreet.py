@@ -27,14 +27,19 @@ def find_nearby_issues( lat=None, lon=None):
             'link': entry['link'],
             'lat':  rss_lat,
             'lon':  rss_lon,
+            'summary': entry['summary'],
         }
         
         issues.append( issue )
+
+        # pp.pprint( entry )
     
     return issues
 
 
-# pp.pprint( find_nearby_issues( lat=51.5159573, lon=-0.1223774 ) )
+# pp.pprint( 
+# find_nearby_issues( lat=51.5159573, lon=-0.1223774 )
+# )
 
 
 
