@@ -1,5 +1,6 @@
 import urlparse
 import urllib2
+import urllib
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response
@@ -35,7 +36,7 @@ def issue(request, issue_id=None):
             data['update'] = "fmsgame: this couldn't be found"
         else:
             raise Http404
-        response = urllib2.urlopen(target_url, data)
+        response = urllib2.urlopen(target_url, urllib.urlencode(data))
         # FIXME handle the response    
         return HttpResponseRedirect(reverse('geolocate'))
     return render_to_response('issue.html')
