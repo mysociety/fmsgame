@@ -22,6 +22,7 @@ urlpatterns = patterns('',
 
     (r'^$',          direct_to_template, { 'template': 'login.html', } ),
     (r'^geolocate$', direct_to_template, { 'template': 'geolocate.html', } ),
+    (r'^issue/(P?<issue_id>\d*)/$', views.issue ),
 
     # openid login/registration
     (r'^openid/',              include( 'django_openid_auth.urls' )),    
