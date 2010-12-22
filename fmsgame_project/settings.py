@@ -1,5 +1,29 @@
-# Django settings for fmsgame project.
+# Django settings for fmsgame_project project.
 
+# Some special mysociety preamble in order to get hold of our config
+# file conf/general
+import os
+import sys
+package_dir = os.path.abspath(os.path.split(__file__)[0])
+
+paths = (
+    os.path.normpath(package_dir + "/../pylib"),
+    os.path.normpath(package_dir + "/../commonlib/pylib"),
+    )
+
+for path in paths:
+    if path not in sys.path:
+        sys.path.append(path)
+
+try:
+    from config_local import config  # put settings in config_local if you're not running in a fill mysociety vhost
+    SERVE_STATIC_FILES = True
+except ImportError:
+    SERVE_STATIC_FILES = False
+    from mysociety import config
+    config.set_file(os.path.abspath(package_dir + "/../conf/general"))
+
+# Now follows the normal Django stuff.
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -9,12 +33,12 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASE_ENGINE = ''           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = ''             # Or path to database file if using sqlite3.
-DATABASE_USER = ''             # Not used with sqlite3.
-DATABASE_PASSWORD = ''         # Not used with sqlite3.
-DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
-DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
+DATABASE_ENGINE   = 'postgresql_psycopg2'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+DATABASE_NAME     = config.get('FMSGAME_DB_NAME')
+DATABASE_USER     = config.get('FMSGAME_DB_USER')
+DATABASE_PASSWORD = config.get('FMSGAME_DB_PASS')
+DATABASE_HOST     = config.get('FMSGAME_DB_HOST')
+DATABASE_PORT     = config.get('FMSGAME_DB_PORT')
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -59,11 +83,34 @@ TEMPLATE_LOADERS = (
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
+    'django.contrib.csrf.middleware.CsrfMiddleware',    
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
 )
 
-ROOT_URLCONF = 'fmsgame.urls'
+AUTHENTICATION_BACKENDS = (
+    'django_openid_auth.auth.OpenIDBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+# where should user go to start openid login/registration process.
+# For now limit it only to Google accounts.
+# Note that django-openid is outdated and might break for other openid
+# providers: http://stackoverflow.com/questions/3145453
+OPENID_SSO_SERVER_URL = 'https://www.google.com/accounts/o8/id'
+
+# create users if they don't exist
+OPENID_CREATE_USERS = True
+
+# If user details have changed then update them on login
+OPENID_UPDATE_DETAILS_FROM_SREG = True
+
+# openid related urls
+LOGIN_URL = '/openid/login/'
+LOGIN_REDIRECT_URL = '/FIXME'
+
+
+ROOT_URLCONF = 'fmsgame_project.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -76,4 +123,5 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
+    'django_openid_auth',
 )
