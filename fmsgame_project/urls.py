@@ -22,7 +22,7 @@ urlpatterns = patterns('',
 
 
     (r'^$',          direct_to_template, { 'template': 'login.html', } ),
-    (r'^geolocate$', direct_to_template, { 'template': 'geolocate.html', } ),
+    url(r'^geolocate$', direct_to_template, { 'template': 'geolocate.html', }, name='geolocate' ),
     (r'^issue/(?P<issue_id>[\d]+)/$', views.issue ),
 
     # openid login/registration
