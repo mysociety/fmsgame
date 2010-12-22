@@ -24,7 +24,7 @@
         <h1>Scoreboard</h1>
         
         {% if request.user.is_authenticated %}
-            <p>You have {{ score }} point{{ score|pluralize }}.</p>
+            <p>You have {{ request.user.score_set.all.0.score }} point{{ request.user.score_set.all.0.score|pluralize }}.</p>
         {% endif %}
         
         <table>
