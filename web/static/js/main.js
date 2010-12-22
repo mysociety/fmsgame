@@ -16,10 +16,15 @@ function geolocation_success_redirect(loc) {
     + "&lat=" + loc.coords.latitude;
 
   var google_map_url
-   = 'http://maps.google.co.uk/maps'
-   + '?q=' + escape( rss_url );
+   = 'http://maps.google.com/maps?q=' + escape( rss_url );
 
-  window.location = google_map_url;
+  // window.location = google_map_url;
+
+  // Note - we need to display the url for the ser to click on so that the smart
+  // phones offer the user the choice to use the map app rather than the web page.
+    $("#message")
+    .html('Found you - <a href="'+google_map_url+'">view nearby issues</a>');
+
 
 }
 
