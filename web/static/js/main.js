@@ -23,8 +23,7 @@ function geolocation_success_redirect(loc) {
   // Note - we need to display the url for the ser to click on so that the smart
   // phones offer the user the choice to use the map app rather than the web page.
     $("#message")
-    .html('Found you - <a href="'+google_map_url+'">view nearby issues</a>');
-
+    .html('<a href="'+google_map_url+'">Found you - click me to view nearby issues</a>');
 
 }
 
