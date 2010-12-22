@@ -4,7 +4,6 @@ import django.views.static
 import settings
 import views
 
-
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
@@ -21,10 +20,12 @@ urlpatterns = patterns('',
     # (r'^admin/', include(admin.site.urls)),
 
 
-    (r'^$',          direct_to_template, { 'template': 'login.html', } ),
-    url(r'^geolocate$', direct_to_template, { 'template': 'geolocate.html', }, name='geolocate' ),
-    (r'^issue/(?P<issue_id>[\d]+)/$', views.issue ),
+    (r'^$',            direct_to_template, { 'template': 'login.html', } ),
+    (r'^geolocate$',   direct_to_template, { 'template': 'geolocate.html', } ),
 
+    ( r'^find_issues',                 views.find_issues, ),
+    ( r'^issue/(?P<issue_id>[\d]+)/$', views.issue ),
+    
     # openid login/registration
     (r'^openid/',              include( 'django_openid_auth.urls' )),    
 )
