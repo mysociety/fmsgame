@@ -17,8 +17,8 @@ def issue(request, issue_id=None):
         target_url = urlparse.urljoin(settings.FMS_URL, '/report/%s' % issue_id)
         data =  {'submit_update': '1',
                  'id': issue_id,
-                 'name': request.User.get_full_name(),
-                 'email': request.User.email,
+                 'name': request.user.get_full_name(),
+                 'email': request.user.email,
                  'rznvy': '', # check this
                  #'update': '', # text of the update (e.g., "I put it in the bin")
                  'fixed': '', # checkbox for: Is it fixed?
