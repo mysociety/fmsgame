@@ -5,17 +5,21 @@ function lookup_location() {
 
 function geolocation_success_redirect(loc) {
 
-  //var center = new GLatLng(loc.coords.latitude,loc.coords.longitude);
-
-  var url
-    = '/find_issues'
-    + "?lon=" + loc.coords.longitude
-    + "&lat=" + loc.coords.latitude;
-
   $("#message")
     .html('Found you - finding nearby issues');
 
-  window.location = url;
+  var rss_url
+    = 'http://'
+    + window.location.host
+    + '/find_issues'
+    + "?lon=" + loc.coords.longitude
+    + "&lat=" + loc.coords.latitude;
+
+  var google_map_url
+   = 'http://maps.google.co.uk/maps'
+   + '?q=' + escape( rss_url );
+
+  window.location = google_map_url;
 
 }
 
