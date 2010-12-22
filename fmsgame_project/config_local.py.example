@@ -1,0 +1,10 @@
+config = dict(
+    FMSGAME_DB_NAME = 'fmsgame',     # Name of your postgres database
+    FMSGAME_DB_USER = 'FIXME',       # Postgres user to connect with
+    FMSGAME_DB_PASS = 's3cr3t',      # Password for postgres
+    FMSGAME_DB_HOST = 'localhost',   # host for postgres
+    FMSGAME_DB_PORT = 5432,          # port for postgres
+    
+    # Set this to some random stuff yourself
+    DJANGO_SECRET_KEY = 'FIXME',
+)
