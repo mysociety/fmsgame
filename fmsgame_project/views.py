@@ -21,8 +21,8 @@ def issue(request, issue_id=None):
         data =  {'submit_update': '1',
                  'id': issue_id,
                  'name': request.user.get_full_name(),
-                 'email': request.user.email,
-                 'rznvy': '', # check this
+                 'rznvy': request.user.email,
+                 #'email': '', # check this
                  #'update': '', # text of the update (e.g., "I put it in the bin")
                  'fixed': '', # checkbox for: Is it fixed?
                  'add_alert': '', # don't add the user to automatic alert notifications
