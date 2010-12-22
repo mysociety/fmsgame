@@ -16,11 +16,11 @@
  *
  */
 
-define('OPTION_FMSG_DB_NAME', '');
-define('OPTION_FMSG_DB_USER', '');
-define('OPTION_FMSG_DB_PASS', '');
-define('OPTION_FMSG_DB_HOST', null);
-define('OPTION_FMSG_DB_PORT', null);
+define('OPTION_FMSGAME_DB_NAME', '');
+define('OPTION_FMSGAME_DB_USER', '');
+define('OPTION_FMSGAME_DB_PASS', '');
+define('OPTION_FMSGAME_DB_HOST', null);
+define('OPTION_FMSGAME_DB_PORT', null);
 
 define('OPTION_DJANGO_SECRET_KEY', '');
 
