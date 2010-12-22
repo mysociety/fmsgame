@@ -80,7 +80,7 @@ def find_issues(request):
 
         issue_url = request.build_absolute_uri( '/issue/' + str(issue['id']) )
 
-        description_start = '<a href="' + issue_url + '">Click to win points!!</a><br><br>'
+        description_start = '<h2><a href="' + issue_url + '">Follow me to play</a></h2><br><br>'
 
         # Not sure why this is not working... should strip out the 'Report on FixMyStreet' link
         # description_end = ''.join(BeautifulSoup( issue['summary'] ).findAll( lambda tag: tag.name != 'a' ))
@@ -101,7 +101,7 @@ def find_issues(request):
         rss_items.append( item )
 
     rss = GeoRSS.GeoRSS(
-        title         = "Andrew's PyRSS2Gen feed",
+        title         = "FixMyStreet Game",
         link          = request.build_absolute_uri(),
         description   = "Foo",
         lastBuildDate = datetime.datetime.now(),

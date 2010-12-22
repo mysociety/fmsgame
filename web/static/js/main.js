@@ -1,11 +1,11 @@
 function lookup_location() {
-  $("#message").html("Trying to find you...");
+  $("#autolocate_ui").html("Trying to find you... please be patient... ");
   geo_position_js.getCurrentPosition( geolocation_success_redirect, display_geolocation_error );
 }
 
 function geolocation_success_redirect(loc) {
 
-  $("#message")
+  $("#autolocate_ui")
     .html('Found you - finding nearby issues');
 
   var rss_url
@@ -22,22 +22,22 @@ function geolocation_success_redirect(loc) {
 
   // Note - we need to display the url for the ser to click on so that the smart
   // phones offer the user the choice to use the map app rather than the web page.
-    $("#message")
-    .html('<a href="'+google_map_url+'">Found you - click me to view nearby issues</a>');
+    $("#autolocate_ui")
+    .html('<a href="'+google_map_url+'">Found you - follow this link, choose "complete action using maps", then using the map walk to a nearby report. Once there tap the pin on the map and follow the link.</a>');
 
 }
 
 function display_geolocation_error() {
-  $("#message")
+  $("#autolocate_ui")
     .html('Unable to determine your location.');
 }
 
 $(document).ready( function() {
   if ( geo_position_js.init() ) {
-    $("#autolocate")
-        .html('<a href="#" onclick="lookup_location();return false">auto-locate</a>');
+    $("#autolocate_ui")
+        .html('<a href="#" onclick="lookup_location();return false">Locate me now!</a>');
   } else {
-    $("#message")
+    $("#autolocate_ui")
         .html("Your browser does not support geolocation.");
   }
 } );
