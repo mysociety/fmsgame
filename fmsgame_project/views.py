@@ -37,10 +37,10 @@ def issue(request, issue_id=None):
         if state == 'fixed':
             data['fixed'] = 1
             data['update'] = 'fmsgame: this is fixed'
-            new_points = 3
+            new_points = 1
         elif state == 'notfixed':
             data['update'] = 'fmsgame: this is not fixed'
-            new_points = 2
+            new_points = 1
         elif state == 'notfound':
             data['update'] = "fmsgame: this couldn't be found"
             new_points = 1
@@ -50,7 +50,6 @@ def issue(request, issue_id=None):
         response = urllib2.urlopen(target_url, urllib.urlencode(data))
 
         score_obj, created = scoreboard_models.Score.objects.get_or_create(user=request.user)
-#        import pdb;pdb.set_trace()
         old_score = score_obj.score or 0
         score_obj.score = old_score + new_points
         score_obj.save()
