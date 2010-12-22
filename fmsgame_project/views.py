@@ -120,5 +120,6 @@ def score(request):
     return render_to_response('score.html', {'score': score, 'range': my_range}, context) 
 
 def scoreboard(request):
+    scores = scoreboard_models.Score.objects.all().order_by('-score')
     context = RequestContext(request)
-    return render_to_response('scoreboard.html', {}, context) 
+    return render_to_response('scoreboard.html', {'scores': scores}, context)

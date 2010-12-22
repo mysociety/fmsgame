@@ -9,6 +9,12 @@
         
         <p>You have {{ request.user.score_set.all.0.score }} points.</p>
         
+	<table>
+	  <tr><th>Name</th><th>Score</th></tr>
+	{% for score in scores %}
+          <tr><td>{{ score.user.get_full_name }}</td><td>{{ score.score }}</td></tr>
+	{% endfor %}
+	</table>
         <!--
         { if score == 0 }
             print "Haven't started"
