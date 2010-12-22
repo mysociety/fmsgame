@@ -83,9 +83,32 @@ TEMPLATE_LOADERS = (
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
+    'django.contrib.csrf.middleware.CsrfMiddleware',    
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
 )
+
+AUTHENTICATION_BACKENDS = (
+    'django_openid_auth.auth.OpenIDBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+# where should user go to start openid login/registration process.
+# For now limit it only to Google accounts.
+# Note that django-openid is outdated and might break for other openid
+# providers: http://stackoverflow.com/questions/3145453
+OPENID_SSO_SERVER_URL = 'https://www.google.com/accounts/o8/id'
+
+# create users if they don't exist
+OPENID_CREATE_USERS = True
+
+# If user details have changed then update them on login
+OPENID_UPDATE_DETAILS_FROM_SREG = True
+
+# openid related urls
+LOGIN_URL = '/openid/login/'
+LOGIN_REDIRECT_URL = '/FIXME'
+
 
 ROOT_URLCONF = 'fmsgame.urls'
 
@@ -100,4 +123,5 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
+    'django_openid_auth',
 )
