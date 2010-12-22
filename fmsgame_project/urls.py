@@ -21,7 +21,7 @@ urlpatterns = patterns('',
 
 
     (r'^$',            direct_to_template, { 'template': 'login.html', } ),
-    (r'^geolocate$',   direct_to_template, { 'template': 'geolocate.html', } ),
+    url(r'^geolocate$',   direct_to_template, { 'template': 'geolocate.html', } name='geolocate'),
 
     ( r'^find_issues',                 views.find_issues, ),
     ( r'^issue/(?P<issue_id>[\d]+)/$', views.issue ),
