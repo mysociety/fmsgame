@@ -1,7 +1,7 @@
 from django.conf.urls.defaults   import patterns, url, include
 from django.views.generic.simple import direct_to_template
-
-# import djangoproj.settings
+import django.views.static
+import settings
 
 
 # Uncomment the next two lines to enable the admin:
@@ -20,8 +20,16 @@ urlpatterns = patterns('',
     # (r'^admin/', include(admin.site.urls)),
 
 
-    (r'^$', direct_to_template, { 'template': 'login.html', } ),
+    (r'^$',          direct_to_template, { 'template': 'login.html', } ),
+    (r'^geolocate$', direct_to_template, { 'template': 'geolocate.html', } ),
 
     # openid login/registration
     (r'^openid/',              include( 'django_openid_auth.urls' )),    
 )
+
+if settings.SERVE_STATIC_FILES:
+    urlpatterns += patterns('',
+        (r'^static/(?P<path>.*)$', 
+         django.views.static.serve, 
+         {'document_root':settings.MEDIA_ROOT}),
+    )

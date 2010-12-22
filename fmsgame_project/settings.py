@@ -1,4 +1,4 @@
-# Django settings for fmsgame_project project.
+# Django settings for fmsgame project.
 
 # Some special mysociety preamble in order to get hold of our config
 # file conf/general
@@ -59,7 +59,7 @@ USE_I18N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = os.path.join(package_dir, "../web/static/")
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
@@ -107,7 +107,7 @@ OPENID_UPDATE_DETAILS_FROM_SREG = True
 
 # openid related urls
 LOGIN_URL = '/openid/login/'
-LOGIN_REDIRECT_URL = '/FIXME'
+LOGIN_REDIRECT_URL = '/geolocate'
 
 
 ROOT_URLCONF = 'fmsgame_project.urls'
