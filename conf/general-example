@@ -16,11 +16,11 @@
  *
  */
 
-define('OPTION_WTF_DB_NAME', '');
-define('OPTION_WTF_DB_USER', '');
-define('OPTION_WTF_DB_PASS', '');
-define('OPTION_WTF_DB_HOST', null);
-define('OPTION_WTF_DB_PORT', null);
+define('OPTION_FMSG_DB_NAME', '');
+define('OPTION_FMSG_DB_USER', '');
+define('OPTION_FMSG_DB_PASS', '');
+define('OPTION_FMSG_DB_HOST', null);
+define('OPTION_FMSG_DB_PORT', null);
 
 define('OPTION_DJANGO_SECRET_KEY', '');
 
