@@ -3,28 +3,29 @@
     <head>
         <title>FixMyStreet Game: Your score</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width, height=device-height, minimum-scale=1.0" />        
+        <style tyle="text/css">
+        table { 
+        	border: 1px #FFA500 solid;
+        	border-collapse: collapse;
+        	border-spacing: 0px;
+        }
+
+        table td {
+        	padding: 4px;
+        }
+        </style>
     </head>
     <body>
         <h1>Scoreboard</h1>
         
         <p>You have {{ request.user.score_set.all.0.score }} points.</p>
         
-	<table>
-	  <tr><th>Name</th><th>Score</th></tr>
-	{% for score in scores %}
-          <tr><td>{{ score.user.get_full_name }}</td><td>{{ score.score }}</td></tr>
-	{% endfor %}
-	</table>
-        <!--
-        { if score == 0 }
-            print "Haven't started"
-        }
-        -->
-        <!--
-        { for user-score  }
-            <img src="/static/fmsgame_trophy_score.png" alt="1" />
-        { endfor }
-        -->
+        <table>
+          <tr><th>Name</th><th>Score</th></tr>
+        {% for score in scores %}
+              <tr><td>{{ score.user.get_full_name }}</td><td style="text-align:right">{{ score.score }}</td></tr>
+        {% endfor %}
+        </table>
         <p>
             Back to <a href="/geolocate">the game!</a>
         </p>

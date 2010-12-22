@@ -7,16 +7,20 @@
     <body>
         <h1>Your Score</h1>
         
-        <p>You have {{ score }} points.</p>
+        <p>You have {{ score }} point{{ score|pluralize }}.</p>
         
         <!--
         { if score == 0 }
             print "Haven't started"
         }
         -->
-        {% for i in range  %}
-            <img src="/static/fmsgame_trophy_score.png" alt="1" />
-        {% endfor %}
+        {% if score %}
+            <div style="border:2px solid #FFA500; padding: 8px">
+                {% for i in range  %}
+                    <img src="/static/fmsgame_trophy_score.png" alt="1 point" />
+                {% endfor %}
+            </div>
+        {% endif %}
         <p>
             Back to <a href="/geolocate">the game!</a>
         </p>
