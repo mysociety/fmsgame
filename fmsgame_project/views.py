@@ -4,7 +4,7 @@ from django.http import Http404, HttpResponseRedirect
 
 @login_required
 def issue(request, issue_id=None):
-    if request.method == 'post':
+    if request.method == 'POST':
         state = request.POST.get('state')
         if state == 'fixed':
             pass
