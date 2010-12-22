@@ -82,7 +82,7 @@ def find_issues(request):
         rss_items.append( item )
 
     rss = GeoRSS.GeoRSS(
-        title         = "Andrew's PyRSS2Gen feed",
+        title         = "FixMyStreet Game",
         link          = request.build_absolute_uri(),
         description   = "Foo",
         lastBuildDate = datetime.datetime.now(),
