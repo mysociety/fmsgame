@@ -1,5 +1,6 @@
 import urlparse
 import urllib2
+import urllib
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response
@@ -17,8 +18,8 @@ def issue(request, issue_id=None):
         target_url = urlparse.urljoin(settings.FMS_URL, '/report/%s' % issue_id)
         data =  {'submit_update': '1',
                  'id': issue_id,
-                 'name': request.User.get_full_name(),
-                 'email': request.User.email,
+                 'name': request.user.get_full_name(),
+                 'email': request.user.email,
                  'rznvy': '', # check this
                  #'update': '', # text of the update (e.g., "I put it in the bin")
                  'fixed': '', # checkbox for: Is it fixed?
@@ -35,7 +36,7 @@ def issue(request, issue_id=None):
             data['update'] = "fmsgame: this couldn't be found"
         else:
             raise Http404
-        response = urllib2.open(target_url, data)
+        response = urllib2.urlopen(target_url, urllib.urlencode(data))
         # FIXME handle the response    
         return HttpResponseRedirect(reverse('geolocate'))
     return render_to_response('issue.html')
