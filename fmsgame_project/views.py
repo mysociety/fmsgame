@@ -19,7 +19,7 @@ def issue(request, issue_id=None):
         data =  {'submit_update': '1',
                  'id': issue_id,
                  'name': request.user.get_full_name(),
-                 'rznvy': request.user.email,
+                 'rznvy': 'mysociety.director@gmail.com',  # request.user.email,
                  #'email': '', # check this
                  #'update': '', # text of the update (e.g., "I put it in the bin")
                  'fixed': '', # checkbox for: Is it fixed?
