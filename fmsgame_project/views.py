@@ -122,6 +122,6 @@ def scoreboard(request):
         score = None
         my_range = []
     my_range = range(score)
-    return render_to_response('scoreboard.html', {'score': score, 'range': my_range}, context) 
+    return render_to_response('scoreboard.html', {'scores': scores, 'range': my_range}, context) 
 
 #    return render_to_response('scoreboard.html', {'scores': scores}, context)
