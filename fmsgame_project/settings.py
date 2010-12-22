@@ -1,4 +1,4 @@
-# Django settings for fmsgame project.
+# Django settings for fmsgame_project project.
 
 # Some special mysociety preamble in order to get hold of our config
 # file conf/general
@@ -110,7 +110,7 @@ LOGIN_URL = '/openid/login/'
 LOGIN_REDIRECT_URL = '/FIXME'
 
 
-ROOT_URLCONF = 'fmsgame.urls'
+ROOT_URLCONF = 'fmsgame_project.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
