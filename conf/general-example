@@ -24,4 +24,6 @@ define('OPTION_FMSGAME_DB_PORT', null);
 
 define('OPTION_DJANGO_SECRET_KEY', '');
 
+define('OPTION_FMSGAME_FMS_URL', '');
+
 ?>
