@@ -39,6 +39,7 @@ DATABASE_USER     = config.get('FMSGAME_DB_USER')
 DATABASE_PASSWORD = config.get('FMSGAME_DB_PASS')
 DATABASE_HOST     = config.get('FMSGAME_DB_HOST')
 DATABASE_PORT     = config.get('FMSGAME_DB_PORT')
+FMS_URL           = config.get('FMSGAME_FMS_URL')
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
