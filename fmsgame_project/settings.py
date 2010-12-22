@@ -1,5 +1,29 @@
 # Django settings for fmsgame project.
 
+# Some special mysociety preamble in order to get hold of our config
+# file conf/general
+import os
+import sys
+package_dir = os.path.abspath(os.path.split(__file__)[0])
+
+paths = (
+    os.path.normpath(package_dir + "/../pylib"),
+    os.path.normpath(package_dir + "/../commonlib/pylib"),
+    )
+
+for path in paths:
+    if path not in sys.path:
+        sys.path.append(path)
+
+try:
+    from config_local import config  # put settings in config_local if you're not running in a fill mysociety vhost
+    SERVE_STATIC_FILES = True
+except ImportError:
+    SERVE_STATIC_FILES = False
+    from mysociety import config
+    config.set_file(os.path.abspath(package_dir + "/../conf/general"))
+
+# Now follows the normal Django stuff.
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -9,12 +33,12 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASE_ENGINE = ''           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = ''             # Or path to database file if using sqlite3.
-DATABASE_USER = ''             # Not used with sqlite3.
-DATABASE_PASSWORD = ''         # Not used with sqlite3.
-DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
-DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
+DATABASE_ENGINE   = 'postgresql_psycopg2'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+DATABASE_NAME     = config.get('FMSGAME_DB_NAME')
+DATABASE_USER     = config.get('FMSGAME_DB_USER')
+DATABASE_PASSWORD = config.get('FMSGAME_DB_PASS')
+DATABASE_HOST     = config.get('FMSGAME_DB_HOST')
+DATABASE_PORT     = config.get('FMSGAME_DB_PORT')
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
