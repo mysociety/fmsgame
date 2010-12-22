@@ -112,14 +112,16 @@ def find_issues(request):
         content_type = 'application/rss+xml'
     )
 
-@login_required
-def score(request):
-    context = RequestContext(request)
-    score = request.user.score_set.all()[0].score
-    my_range = range(score)
-    return render_to_response('score.html', {'score': score, 'range': my_range}, context) 
-
 def scoreboard(request):
     scores = scoreboard_models.Score.objects.all().order_by('-score')
     context = RequestContext(request)
+    if request.user.is_authenticated():
+        score = request.user.score_set.all()[0].score
+        my_range = range(score)
+    else
+        score = None
+        my_range = []
+    my_range = range(score)
+    return render_to_response('score.html', {'score': score, 'range': my_range}, context) 
+
     return render_to_response('scoreboard.html', {'scores': scores}, context)

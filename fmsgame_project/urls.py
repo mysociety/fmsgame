@@ -28,7 +28,6 @@ urlpatterns = patterns('',
     
     # openid login/registration
     (r'^openid/',              include( 'django_openid_auth.urls' )),
-    (r'^my_score', views.score ),                   
     (r'^scoreboard', views.scoreboard ),
                        )
 
