@@ -113,6 +113,7 @@ def find_issues(request):
         content_type = 'application/rss+xml'
     )
 
+@login_required
 def score(request):
     context = RequestContext(request)
     score = request.user.score_set.all()[0].score
