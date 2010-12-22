@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response
 from django.http import Http404, HttpResponseRedirect
+from django.core.urlresolvers import reverse
 
 @login_required
 def issue(request, issue_id=None):
