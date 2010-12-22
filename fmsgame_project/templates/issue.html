@@ -1,35 +1,34 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
     <head>
-        <title>FixMyStreet Game: Now win points!</title>
+        <title>Tell us about the problem</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width, height=device-height, minimum-scale=1.0" />
     </head>
     <body>
-        <h1>FixMyStreet: Now Win Points!</h1>
+        <h1>Now tell us about the problem!</h1>
         <p>
             You can <strong>win points</strong>
             by choosing an option below!
         </p>
+
+        <p>I think this problem is:</p>
+
+        <form action="" method="post">
+            <input type="hidden" name="state" value="fixed">
+            <input type="submit" value="FIXED" />
+        </form>
+        
+        <form action="" method="post">
+            <input type="hidden" name="state" value="notfixed">
+            <input type="submit" value="NOT FIXED" />
+        </form>
+        
+        <form action="" method="post">
+            <input type="hidden" name="state" value="notfound">
+            <input type="submit" value="CAN'T FIND" />
+        </form>
+
         <img src="/static/fmsgame_trophy.png" alt="FixMyStreet Game">
-        <p>
-            This problem is:
-        <p>
-            <form action="" method="post">
-                <input type="hidden" name="state" value="fixed">
-                <input type="submit" value="FIXED" />
-            </form>
-        </p>
-        <p>
-            <form action="" method="post">
-                <input type="hidden" name="state" value="notfixed">
-                <input type="submit" value="NOT FIXED" />
-            </form>
-        </p>
-        <p>
-            <form action="" method="post">
-                <input type="hidden" name="state" value="notfound">
-                <input type="submit" value="CAN'T FIND" />
-            </form>
-        </p>
+
     </body>
 </html>
