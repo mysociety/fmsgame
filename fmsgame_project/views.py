@@ -118,7 +118,7 @@ def scoreboard(request):
     if request.user.is_authenticated():
         score = request.user.score_set.all()[0].score
         my_range = range(score)
-    else
+    else:
         score = None
         my_range = []
     my_range = range(score)
