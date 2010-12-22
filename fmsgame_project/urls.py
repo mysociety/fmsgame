@@ -28,7 +28,7 @@ urlpatterns = patterns('',
     
     # openid login/registration
     (r'^openid/',              include( 'django_openid_auth.urls' )),
-    (r'^scoreboard', views.scoreboard ),
+    url(r'^scoreboard', views.scoreboard, name='scoreboard'),
                        )
 
 if settings.SERVE_STATIC_FILES:
