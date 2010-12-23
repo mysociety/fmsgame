@@ -6,11 +6,11 @@
 # Copyright (c) 2010 UK Citizens Online Democracy. All rights reserved.
 # Email: duncan@mysociety.org; WWW: http://www.mysociety.org
 
-WSGIDaemonProcess FMSGame user=fmsgame group=fmsgame processes=5 threads=1 display-name=FMSGame
-WSGIProcessGroup FMSGame
+WSGIDaemonProcess example.com user=fmsgame group=fmsgame processes=5 threads=1 display-name=example.com
+WSGIProcessGroup example.com
 
-WSGIScriptAlias / /data/vhost/fmsgame.mysociety.org/docs/django.wsgi
+WSGIScriptAlias / /data/vhost/example.com/docs/django.wsgi
 
 Alias /media /var/lib/python-support/python2.5/django/contrib/admin/media
-Alias /static /data/vhost/fmsgame.mysociety.org/docs/static
+Alias /static /data/vhost/example.com/docs/static
 
