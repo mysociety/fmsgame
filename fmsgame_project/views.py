@@ -1,6 +1,7 @@
 import urlparse
 import urllib2
 import urllib
+import cgi
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response
@@ -57,9 +58,21 @@ def issue(request, issue_id=None):
         # FIXME handle the response    
         return HttpResponseRedirect(reverse('geolocate'))
 
+    fms_url = 'http://www.fixmystreet.com/report/%s/' %(issue_id)
+    fms_response = urllib2.urlopen(fms_url)
+
+    fms_soup = BeautifulSoup(fms_response.read())
+    google_maps_link = fms_soup.find('p', {'id': 'sub_map_links' }).a['href']
+
+    split_link = urlparse.urlsplit(google_maps_link)
+    useful_string = cgi.parse_qs(split_link.query)['q'][0]
+    target_lat, target_long = useful_string.rsplit(None, 1)[1].split('@')[1].split(',')
+
+    extra_context = {'target_lat': target_lat, 'target_long': target_long}
+
     context = context_instance=RequestContext(request)
 
-    return render_to_response('issue.html', {}, context)
+    return render_to_response('issue.html', extra_context, context)
 
 def find_issues(request):
 
@@ -124,4 +137,3 @@ def scoreboard(request):
     my_range = range(score)
     return render_to_response('scoreboard.html', {'scores': scores, 'range': my_range}, context) 
 
-#    return render_to_response('scoreboard.html', {'scores': scores}, context)
