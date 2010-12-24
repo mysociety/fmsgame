@@ -1,9 +1,9 @@
 function lookup_location() {
   $("#autolocate_ui").html("Trying to find you... please be patient... ");
-  geo_position_js.getCurrentPosition( geolocation_success_redirect, display_geolocation_error );
+  geo_position_js.getCurrentPosition( geolocation_success, display_geolocation_error );
 }
 
-function geolocation_success_redirect(loc) {
+function geolocation_success(loc) {
 
   $("#autolocate_ui")
     .html('Found you - finding nearby issues');
