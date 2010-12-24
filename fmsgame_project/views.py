@@ -9,6 +9,7 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.template import RequestContext
 from django.views.generic.simple import direct_to_template
+from django.views.decorators.cache import cache_control
 
 import fixmystreet
 import datetime
@@ -25,6 +26,7 @@ states = {'notfound': 'Not Found',
           }
 
 @login_required
+@cache_control(no_cache=True)
 def issue(request, issue_id=None):
     if request.method == 'POST':
         target_url = urlparse.urljoin(settings.FMS_URL, '/report/%s' % issue_id)
@@ -98,6 +100,7 @@ def issue(request, issue_id=None):
     return render_to_response(template, extra_context, context)
 
 @login_required
+@cache_control(no_cache=True)
 def success(request, template='success.html'):
     try:
         score = request.user.score_set.all()[0].score
@@ -115,6 +118,7 @@ def success(request, template='success.html'):
     return render_to_response(template, extra_context, context)
 
 @login_required
+@cache_control(no_cache=True)
 def found_you(request):
     lat = request.REQUEST.get('lat')
     lon = request.REQUEST.get('lon')
@@ -139,8 +143,7 @@ def found_you(request):
   #   $("#autolocate_ui")
   #   .html('<a href="'+google_map_url+'">Found you - follow this link, choose "complete action using maps", then using the map walk to a nearby report. Once there tap the pin on the map and follow the link.</a>');
 
-
-
+@cache_control(no_cache=True)
 def find_issues(request):
     lat = request.REQUEST.get('lat')
     lon = request.REQUEST.get('lon')
@@ -190,6 +193,7 @@ def find_issues(request):
         content_type = 'application/rss+xml'
     )
 
+@cache_control(no_cache=True)
 def scoreboard(request):
     scores = scoreboard_models.Score.objects.all().order_by('-score')
     context = RequestContext(request)
