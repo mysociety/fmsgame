@@ -14,9 +14,11 @@ function display_geolocation_error() {
 }
 
 $(document).ready( function() {
+  autolocate_text = $("#autolocate_text").attr('value')
+
   if ( !!navigator.geolocation ) {
     $("#autolocate_ui")
-        .html('<a href="#" onclick="lookup_location();return false">Locate me now!</a>');
+        .html('<a href="#" onclick="lookup_location();return false">' + autolocate_text + '</a>');
   } else {
     $("#autolocate_ui")
         .html("Your browser does not support geolocation.");

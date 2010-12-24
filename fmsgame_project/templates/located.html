@@ -3,10 +3,17 @@
 {% block window_title %}FixMyStreet Game: Found You{% endblock %}
 {% block main_title %}FixMyStreet Game: Found You{% endblock %}
 
+{% block scripts %}
+  <script src=/static/js/external/jquery.js></script>
+  <script src=/static/js/main.js></script>
+{% endblock %}
+
 {% block content %}
   {% if issue_count %}
     <p><a href="{{ google_map_url }}">Follow this link, choose "complete action using maps", then using the map walk to a nearby report. Once there tap the pin on the map and follow the link.</a></p>
   {% else %}
     <p>There are no open issues near you. Please try again later!<p>
+    <span id="autolocate_text" value="Check location again!" />
+    <div id="autolocate_ui">...loading...</div>
   {% endif %}
 {% endblock %}

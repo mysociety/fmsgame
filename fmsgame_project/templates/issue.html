@@ -4,21 +4,27 @@
 {% block main_title %}Tell us about the problem{% endblock %}
 
 {% block scripts %}
-        <script src=/static/js/external/jquery.js></script>
-        <script src=/static/js/external/distance.js></script>
-        <script src=/static/js/issue.js></script>
+  <script src=/static/js/external/jquery.js></script>
+  <script src=/static/js/external/distance.js></script>
+  <script src=/static/js/issue.js></script>
+  <script src=/static/js/main.js></script>
 {% endblock %}
 
 {% block content %}
-        <p><strong>Problem:</strong> {{ issue_title }}</p>
-	<p><strong>Summary:</strong> {{ issue_summary }}</p>
-        <span id="target_lat" value="{{ target_lat }}" />
-        <span id="target_long" value="{{ target_long }}" />
-        <p><strong>Distance: </strong><span id="issue_distance">...calculating...</span></p>
-        <div id="can_we_fix_it">
-          <p>...still working...</p>
-          <form action="" method="post">
-            <input type="hidden" name="unused" value="unused">
-          </form>
-        </div>
+  <p><strong>Problem:</strong> {{ issue_title }}</p>
+  <p><strong>Summary:</strong> {{ issue_summary }}</p>
+  <span id="target_lat" value="{{ target_lat }}" />
+  <span id="target_long" value="{{ target_long }}" />
+  <p><strong>Distance: </strong><span id="issue_distance">...calculating...</span></p>
+  <div id="can_we_fix_it">
+    <p>...still working...</p>
+    <!-- Needed in order to get the CSRF token -->
+    <form action="" method="post">
+      <input type="hidden" name="unused" value="unused">
+    </form>
+  </div>
+  <p>
+    <span id="autolocate_text" value="Find a different issue!" />
+    <div id="autolocate_ui">...loading...</div>
+  </p>
 {% endblock %}

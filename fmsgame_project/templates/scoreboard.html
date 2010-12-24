@@ -49,7 +49,7 @@
 {% block footer %}
 {% if request.user.is_authenticated %}
   <p>
-    Back to the game!
+    <span id="autolocate_text" value="Back to the game!" />
     <div id="autolocate_ui">...loading...</div>
   </p>
 {% else %}
