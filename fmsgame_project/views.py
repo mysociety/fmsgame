@@ -98,10 +98,20 @@ def issue(request, issue_id=None):
     return render_to_response(template, extra_context, context)
 
 @login_required
-def success(request):
+def success(request, template='success.html'):
+    try:
+        score = request.user.score_set.all()[0].score
+    except IndexError:
+        # This is because the user doesn't have a score yet. Use zero.
+        # This should never happen here.
+        score = 0
+        
+    extra_context = {
+        'last_issue_status': states.get(request.session.get('last_issue_status')),
+        'score': score,
+        }
+
     context = context_instance=RequestContext(request)
-    extra_context = {'last_issue_status': states.get(request.session.get('last_issue_status'))}
-    template = 'success.html'
     return render_to_response(template, extra_context, context)
 
 def find_issues(request):

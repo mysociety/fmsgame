@@ -5,7 +5,7 @@
 
 {% block content %}
   <p>That issue has been marked as <strong>{{ last_issue_status }}</strong>.</p>
-
+  <p>You now have <strong>{{ score }}</strong> point{{ score|pluralize }}.</p>
   <p>
     Back to <a href="/geolocate">the game!</a>
   </p>
