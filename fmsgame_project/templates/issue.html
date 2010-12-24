@@ -1,16 +1,17 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
-<html>
-    <head>
-        <title>Tell us about the problem</title>
+{% extends "base.html" %}
+
+{% block window_title %}Tell us about the problem{% endblock %}
+{% block main_title %}Tell us about the problem{% endblock %}
+
+{% block scripts %}
         <script src=/static/js/external/jquery.js></script>
         <script src=/static/js/external/gears_init.js></script>
         <script src=/static/js/external/geo.js></script>
         <script src=/static/js/external/distance.js></script>
         <script src=/static/js/issue.js></script>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width, height=device-height, minimum-scale=1.0" />
-    </head>
-    <body>
-        <h1>Now tell us about the problem!</h1>
+{% endblock %}
+
+{% block content %}
         <p><strong>Problem:</strong> {{ issue_title }}</p>
 	<p><strong>Summary:</strong> {{ issue_summary }}</p>
         <span id="target_lat" value="{{ target_lat }}" />
@@ -22,6 +23,4 @@
             <input type="hidden" name="unused" value="unused">
           </form>
         </div>
-
-    </body>
-</html>
+{% endblock %}
