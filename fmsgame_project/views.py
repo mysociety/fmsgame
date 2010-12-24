@@ -151,9 +151,7 @@ def find_issues(request):
     if lat is None or lon is None:
         raise Http404
         
-    # We have a lat and lon - get the nearest issue from FixMyStreet and send the
-    # user to it
-    nearby_issues = fixmystreet.find_nearby_issues( lat=lat, lon=lon )
+    nearby_issues = fixmystreet.find_nearby_issues(lat=lat, lon=lon)
 
     rss_items = []
     
