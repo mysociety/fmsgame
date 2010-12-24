@@ -4,27 +4,7 @@ function lookup_location() {
 }
 
 function geolocation_success(loc) {
-
-  $("#autolocate_ui")
-    .html('Found you - finding nearby issues');
-
-  var rss_url
-    = 'http://'
-    + window.location.host
-    + '/find_issues'
-    + "?lon=" + loc.coords.longitude
-    + "&lat=" + loc.coords.latitude;
-
-  var google_map_url
-   = 'http://maps.google.com/maps?q=' + escape( rss_url );
-
-  // window.location = google_map_url;
-
-  // Note - we need to display the url for the ser to click on so that the smart
-  // phones offer the user the choice to use the map app rather than the web page.
-    $("#autolocate_ui")
-    .html('<a href="'+google_map_url+'">Found you - follow this link, choose "complete action using maps", then using the map walk to a nearby report. Once there tap the pin on the map and follow the link.</a>');
-
+  window.location.replace('/located?lon=' + loc.coords.longitude + '&lat=' + loc.coords.latitude)
 }
 
 function display_geolocation_error() {

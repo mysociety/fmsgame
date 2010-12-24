@@ -114,8 +114,34 @@ def success(request, template='success.html'):
     context = context_instance=RequestContext(request)
     return render_to_response(template, extra_context, context)
 
-def find_issues(request):
+@login_required
+def found_you(request):
+    lat = request.REQUEST.get('lat')
+    lon = request.REQUEST.get('lon')
 
+    nearby_issues = fixmystreet.find_nearby_issues(lat=lat, lon=lon)
+
+    # FIXME - sort out hardcoded domain name
+    rss_url = "http://fmsgame.mysociety.org/find_issues?lon=%(lon)s&lat=%(lat)s" %dict(lon=lon, lat=lat)
+    google_map_url = "http://maps.google.com/maps?q=%s" %urllib.quote(rss_url)
+
+    extra_context = {
+        'google_map_url': google_map_url,
+        'issue_count': len(nearby_issues),
+        }
+
+    context = context_instance=RequestContext(request)
+    return render_to_response('located.html', extra_context, context)
+
+
+  # // Note - we need to display the url for the ser to click on so that the smart
+  # // phones offer the user the choice to use the map app rather than the web page.
+  #   $("#autolocate_ui")
+  #   .html('<a href="'+google_map_url+'">Found you - follow this link, choose "complete action using maps", then using the map walk to a nearby report. Once there tap the pin on the map and follow the link.</a>');
+
+
+
+def find_issues(request):
     lat = request.REQUEST.get('lat')
     lon = request.REQUEST.get('lon')
 
@@ -129,7 +155,6 @@ def find_issues(request):
     rss_items = []
     
     for issue in nearby_issues:
-
         issue_url = request.build_absolute_uri( '/issue/' + str(issue['id']) )
 
         description_start = '<h2><a href="' + issue_url + '">Follow me to play</a></h2><br><br>'

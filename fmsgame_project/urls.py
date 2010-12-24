@@ -11,6 +11,7 @@ import views
 urlpatterns = patterns('',
     (r'^$', direct_to_template, {'template': 'login.html'}),
     url(r'^geolocate$', direct_to_template, {'template': 'geolocate.html'}, name='geolocate'),
+    (r'^located', views.found_you),
 
     (r'^find_issues', views.find_issues),
     (r'^issue/(?P<issue_id>[\d]+)/$', views.issue),
