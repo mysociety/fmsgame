@@ -1,4 +1,4 @@
-var acceptable_distance = 5000;
+var acceptable_distance = 50;
 
 var watchID;
 var geoLoc;
