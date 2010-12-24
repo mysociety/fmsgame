@@ -47,9 +47,13 @@
 </table>
 {% endblock %}
 {% block footer %}
-<p>
-  Back to the game!
-  <div id="autolocate_ui">...loading...</div>
-</p>
+{% if request.user.is_authenticated %}
+  <p>
+    Back to the game!
+    <div id="autolocate_ui">...loading...</div>
+  </p>
+{% else %}
+  <p><a href="{% url login %}">Login to play</a></p>
+{% endif %}
 {% endblock %}
 

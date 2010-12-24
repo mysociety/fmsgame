@@ -9,7 +9,7 @@ import views
 # admin.autodiscover()
 
 urlpatterns = patterns('',
-    (r'^$', direct_to_template, {'template': 'login.html'}),
+    url(r'^$', direct_to_template, {'template': 'login.html'}, name='login'),
     url(r'^geolocate$', direct_to_template, {'template': 'geolocate.html'}, name='geolocate'),
     (r'^located', views.found_you),
 
