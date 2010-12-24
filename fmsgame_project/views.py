@@ -67,8 +67,14 @@ def issue(request, issue_id=None):
     split_link = urlparse.urlsplit(google_maps_link)
     useful_string = cgi.parse_qs(split_link.query)['q'][0]
     target_lat, target_long = useful_string.rsplit(None, 1)[1].split('@')[1].split(',')
+    issue_summary = fms_soup.find('div', {'id': 'side'}).find('p', {'align': 'right'}).findPrevious('p').string
 
-    extra_context = {'target_lat': target_lat, 'target_long': target_long}
+    extra_context = {
+        'target_lat': target_lat, 
+        'target_long': target_long,
+        'issue_title': fms_soup.title.string,
+        'issue_summary': issue_summary,
+        }
 
     context = context_instance=RequestContext(request)
 
