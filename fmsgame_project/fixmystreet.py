@@ -3,26 +3,21 @@ import feedparser
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
 
-
-
-def find_nearby_issues( lat=None, lon=None):
-    
+def find_nearby_issues( lat=None, lon=None):    
     fms_rss_url = "http://www.fixmystreet.com/rss/l/" + str(lat) + "/" + str(lon) + '?d=1&state=open'
-    
     data = feedparser.parse( fms_rss_url )
 
     entries = data['entries']
     issues  = []
     
     for entry in entries:
-        # I have a horrible feeling this is due to differences in versions of feedparser
+        # I have a horrible feeling this is due to different versions of feedparser
         # dealing differently with the georss namespace.
         try:
             rss_lat, rss_lon = [float(x) for x in entry['georss_point'].split()]
         except:
             rss_lat, rss_lon = [float(x) for x in entry['point'].split()]
             
-    
         rss_id = int( entry['id'].rsplit( '/', 1 )[1] )
     
         name = entry['title'].rsplit( ',', 1)[0]
@@ -38,8 +33,6 @@ def find_nearby_issues( lat=None, lon=None):
         
         issues.append( issue )
 
-        # pp.pprint( entry )
-    
     return issues
 
 

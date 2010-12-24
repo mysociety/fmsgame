@@ -18,7 +18,7 @@ import GeoRSS
 import settings
 from scoreboard import models as scoreboard_models
 
-from BeautifulSoup import BeautifulSoup
+from BeautifulSoup import BeautifulSoup, NavigableString
 
 states = {'notfound': 'Not Found',
           'fixed': 'Fixed',
@@ -162,8 +162,8 @@ def find_issues(request):
 
         # Not sure why this is not working... should strip out the 'Report on FixMyStreet' link
         # description_end = ''.join(BeautifulSoup( issue['summary'] ).findAll( lambda tag: tag.name != 'a' ))
-
-        description_end = ' '.join(BeautifulSoup( issue['summary'] ).findAll( text = True ))
+        issue_soup = BeautifulSoup(issue['summary'])
+        description_end = ' '.join([x for x in issue_soup.contents if isinstance(x, NavigableString)])
 
         item = GeoRSS.GeoRSSItem(
             title        = issue['name'],
