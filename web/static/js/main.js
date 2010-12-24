@@ -1,6 +1,7 @@
 function lookup_location() {
   $("#autolocate_ui").html("Trying to find you... please be patient... ");
-  geo_position_js.getCurrentPosition( geolocation_success, display_geolocation_error );
+  navigator.geolocation.getCurrentPosition( geolocation_success, display_geolocation_error );
+//  geo_position_js.getCurrentPosition( geolocation_success, display_geolocation_error );
 }
 
 function geolocation_success(loc) {
@@ -13,7 +14,7 @@ function display_geolocation_error() {
 }
 
 $(document).ready( function() {
-  if ( geo_position_js.init() ) {
+  if ( !!navigator.geolocation ) {
     $("#autolocate_ui")
         .html('<a href="#" onclick="lookup_location();return false">Locate me now!</a>');
   } else {

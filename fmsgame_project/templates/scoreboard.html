@@ -3,6 +3,11 @@
 {% block window_title %}FixMyStreet Game: Your score{% endblock %}
 {% block main_title %}Scoreboard{% endblock %}
 
+{% block scripts %}
+  <script src=/static/js/external/jquery.js></script>
+  <script src=/static/js/main.js></script>
+{% endblock %}
+
 {% block styles %}   
 <style tyle="text/css">
   table { 
@@ -43,7 +48,8 @@
 {% endblock %}
 {% block footer %}
 <p>
-  Back to <a href="/geolocate">the game!</a>
+  Back to the game!
+  <div id="autolocate_ui">...loading...</div>
 </p>
 {% endblock %}
 
