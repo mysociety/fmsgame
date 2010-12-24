@@ -135,7 +135,11 @@ def scoreboard(request):
     scores = scoreboard_models.Score.objects.all().order_by('-score')
     context = RequestContext(request)
     if request.user.is_authenticated():
-        user_score = request.user.score_set.all()[0].score
+        try:
+            user_score = request.user.score_set.all()[0].score
+        except IndexError:
+            user_score = 0
+
         my_range = range(user_score)
     else:
         user_score = None
