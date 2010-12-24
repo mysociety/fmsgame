@@ -19,6 +19,11 @@ from scoreboard import models as scoreboard_models
 
 from BeautifulSoup import BeautifulSoup
 
+states = {'notfound': 'Not Found',
+          'fixed': 'Fixed',
+          'notfixed': 'Not Fixed',
+          }
+
 @login_required
 def issue(request, issue_id=None):
     if request.method == 'POST':
@@ -55,6 +60,9 @@ def issue(request, issue_id=None):
         score_obj.score = old_score + new_points
         score_obj.save()
 
+        request.session['last_issue_id'] = issue_id
+        request.session['last_issue_status'] = state
+
         # FIXME handle the response    
         return HttpResponseRedirect(reverse('geolocate'))
 
@@ -72,13 +80,22 @@ def issue(request, issue_id=None):
     extra_context = {
         'target_lat': target_lat, 
         'target_long': target_long,
+        'issue_id': issue_id,
         'issue_title': fms_soup.title.string,
         'issue_summary': issue_summary,
+        'last_issue_status': states.get(request.session.get('last_issue_status')),
         }
 
     context = context_instance=RequestContext(request)
 
-    return render_to_response('issue.html', extra_context, context)
+    last_issue_id = request.session.get('last_issue_id')
+
+    if issue_id == request.session.get('last_issue_id'):
+        template = 'issue_done.html'
+    else:
+        template = 'issue.html'
+
+    return render_to_response(template, extra_context, context)
 
 def find_issues(request):
 
