@@ -64,7 +64,7 @@ def issue(request, issue_id=None):
         request.session['last_issue_status'] = state
 
         # FIXME handle the response    
-        return HttpResponseRedirect(reverse('geolocate'))
+        return HttpResponseRedirect(reverse('success'))
 
     fms_url = 'http://www.fixmystreet.com/report/%s/' %(issue_id)
     fms_response = urllib2.urlopen(fms_url)
@@ -95,6 +95,13 @@ def issue(request, issue_id=None):
     else:
         template = 'issue.html'
 
+    return render_to_response(template, extra_context, context)
+
+@login_required
+def success(request):
+    context = context_instance=RequestContext(request)
+    extra_context = {'last_issue_status': states.get(request.session.get('last_issue_status'))}
+    template = 'success.html'
     return render_to_response(template, extra_context, context)
 
 def find_issues(request):

@@ -9,25 +9,15 @@ import views
 # admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Example:
-    # (r'^fmsgame/', include('fmsgame.foo.urls')),
+    (r'^$', direct_to_template, {'template': 'login.html'}),
+    url(r'^geolocate$', direct_to_template, {'template': 'geolocate.html'}, name='geolocate'),
 
-    # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
-    # to INSTALLED_APPS to enable admin documentation:
-    # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
-    # (r'^admin/', include(admin.site.urls)),
-
-
-    (r'^$',            direct_to_template, { 'template': 'login.html', } ),
-    url(r'^geolocate$',   direct_to_template, { 'template': 'geolocate.html', }, name='geolocate'),
-
-    ( r'^find_issues',                 views.find_issues, ),
-    ( r'^issue/(?P<issue_id>[\d]+)/$', views.issue ),
+    (r'^find_issues', views.find_issues),
+    (r'^issue/(?P<issue_id>[\d]+)/$', views.issue),
+    url(r'^success', views.success, name='success'),
     
     # openid login/registration
-    (r'^openid/',              include( 'django_openid_auth.urls' )),
+    (r'^openid/', include('django_openid_auth.urls')),
     url(r'^scoreboard', views.scoreboard, name='scoreboard'),
                        )
 

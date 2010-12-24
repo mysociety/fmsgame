@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block window_title %}Success!{% endblock %}
+{% block main_title %}Success{% endblock %}
+
+{% block content %}
+  <p>That issue has been marked as <strong>{{ last_issue_status }}</strong>.</p>
+
+  <p>
+    Back to <a href="/geolocate">the game!</a>
+  </p>
+{% endblock %}
