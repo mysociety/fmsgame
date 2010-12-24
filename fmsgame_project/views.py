@@ -138,6 +138,7 @@ def scoreboard(request):
         try:
             user_score = request.user.score_set.all()[0].score
         except IndexError:
+            # This is because the user doesn't have a score yet. Use zero.
             user_score = 0
 
         my_range = range(user_score)
