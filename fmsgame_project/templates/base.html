@@ -3,16 +3,13 @@
     <head>
         <title>{% block window_title %}{% endblock %}</title>
 {% block scripts %}
-        <script src=/static/js/external/jquery.js></script>
-        <script src=/static/js/external/gears_init.js></script>
-        <script src=/static/js/external/geo.js></script>
-        <script src=/static/js/external/distance.js></script>
-        <script src=/static/js/issue.js></script>
 {% endblock %}
         <meta name="viewport" content="initial-scale=1.0, width=device-width, height=device-height, minimum-scale=1.0" />
+{% block styles %}{% endblock %}
     </head>
     <body>
         <h1>{% block main_title %}{% endblock %}</h1>
+        <h2>{% block subtitle %}{% endblock %}</h2>
 {% block content %}
 {% endblock %}
 {% block footer %}

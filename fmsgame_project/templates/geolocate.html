@@ -1,21 +1,17 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
-<html>
-    <head>
-        <title></title>
+{% extends "base.html" %}
+
+{% block window_title %}Where are you?{% endblock %}
+{% block main_title %}Where are you?{% endblock %}
+
+{% block scripts %}
         <script src=/static/js/external/jquery.js></script>
         <script src=/static/js/external/gears_init.js></script>
         <script src=/static/js/external/geo.js></script>
         <script src=/static/js/main.js></script>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width, height=device-height, minimum-scale=1.0" />        
-    </head>
-    <body>
-        <h1>Where are you?</h1>
+{% endblock %}
 
+{% block content %}
         <p>In order to play the game we need to know the location of your handset. Please click the 'locate me now' link and approve any requests your browser makes for location information.</p>
 
         <div id="autolocate_ui">...loading...</div>
-	<p>
-	  <a href="{% url scoreboard %}">Scoreboard</a>
-	</p>
-    </body>
-</html>
+{% endblock %}

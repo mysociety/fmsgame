@@ -1,47 +1,49 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
-<html>
-    <head>
-        <title>FixMyStreet Game: Your score</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width, height=device-height, minimum-scale=1.0" />        
-        <style tyle="text/css">
-        table { 
-        	border: 1px #FFA500 solid;
-        	border-collapse: collapse;
-        	border-spacing: 0px;
-        }
+{% extends "base.html" %}
 
-        table tr td, table tr th  {
-        	padding: 0.25em 0.5em;
-            border: 1px #FFA500 solid;
-        }
-        table tr th {
-            background-color: #FF8C00;
-            color: #ffffff;
-        }
-        </style>
-    </head>
-    <body>
-        <h1>Scoreboard</h1>
+{% block window_title %}FixMyStreet Game: Your score{% endblock %}
+{% block main_title %}Scoreboard{% endblock %}
+
+{% block styles %}   
+<style tyle="text/css">
+  table { 
+  border: 1px #FFA500 solid;
+  border-collapse: collapse;
+  border-spacing: 0px;
+  }
+  
+  table tr td, table tr th  {
+  padding: 0.25em 0.5em;
+  border: 1px #FFA500 solid;
+  }
+  table tr th {
+  background-color: #FF8C00;
+  color: #ffffff;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+{% if request.user.is_authenticated %}
+  <p>You have {{ score }} point{{ score|pluralize }}.</p>
+  {% if score %}
+    <div style="border:2px solid #FFA500; padding: 8px; margin-bottom:1em;">
+      {% for i in range  %}
+        <img src="/static/fmsgame_trophy_score.png" alt="1 point" />
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endif %}
         
-        {% if request.user.is_authenticated %}
-            <p>You have {{ score }} point{{ score|pluralize }}.</p>
-            {% if score %}
-                <div style="border:2px solid #FFA500; padding: 8px; margin-bottom:1em;">
-                    {% for i in range  %}
-                        <img src="/static/fmsgame_trophy_score.png" alt="1 point" />
-                    {% endfor %}
-                </div>
-            {% endif %}
-        {% endif %}
-        
-        <table>
-          <tr><th>Name</th><th>Score</th></tr>
-        {% for score in scores %}
-              <tr><td>{{ score.user.get_full_name }}</td><td style="text-align:right">{{ score.score }}</td></tr>
-        {% endfor %}
-        </table>
-        <p>
-            Back to <a href="/geolocate">the game!</a>
-        </p>
-    </body>
-</html>
+<table>
+  <tr><th>Name</th><th>Score</th></tr>
+    {% for score in scores %}
+  <tr><td>{{ score.user.get_full_name }}</td><td style="text-align:right">{{ score.score }}</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}
+{% block footer %}
+<p>
+  Back to <a href="/geolocate">the game!</a>
+</p>
+{% endblock %}
+

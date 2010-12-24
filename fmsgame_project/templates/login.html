@@ -1,41 +1,35 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
-<html>
-    <head>
-        <title>FixMyStreet Game: Login</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width, height=device-height, minimum-scale=1.0" />        
-    </head>
-    <body>
+{% extends "base.html" %}
 
-        <h1>FixMyStreet Game: A <a href="http://twitter.com/mysociety">mySociety</a> Christmas Afternoon Hacking Project</h1>
+{% block window_title %}FixMyStreet Game: Login{% endblock %}
+{% block main_title %}FixMyStreet Game{% endblock %}
+{% block subtitle %} A <a href="http://twitter.com/mysociety">mySociety</a> Christmas Afternoon Hacking Project{% endblock %}
 
-        <img src="/static/fmsgame_trophy.png" alt="FixMyStreet Game">
+{% block content %}
+<img src="/static/fmsgame_trophy.png" alt="FixMyStreet Game">
 
-        <p>
-            <a href="/openid/login">Login to play!</a>
-        </p>
+<p>
+  <a href="/openid/login">Login to play!</a>
+</p>
 
-        <p>Welcome to our mobile game that's so Alpha it's almost Omega.</p>
+<p>Welcome to our mobile game that's so Alpha it's almost Omega.</p>
+<p>The game works as follows:</p>
 
-        <p>The game works as follows:</p>
-
-        <ol>
-            <li>Go outside, or somewhere your phone can get GPS signal
-            <li>Open this page (the one you're reading right now) on your Android/iPhone. Basically any phone with GPS and Google Maps.
-            <li>Click below to Login by using a Google account
-            <li>Allow the service to get your location.
-            <li>Look at the map. It should show pins that represent FixMyStreet reports near you that we think might never have been fixed.
-            <li>Walk, drive or cycle until you are at the site of the nearest pin.
-            <li>Click on the pin on your map, and open the link.
-            <li>Select whether the problem is now fixed, not fixed, or whether you can't find it.
-            <li>Win points and appear on our soon-to-be ready League table.
-        </ol>
+<ol>
+  <li>Go outside, or somewhere your phone can get GPS signal
+  <li>Open this page (the one you're reading right now) on your Android/iPhone. Basically any phone with GPS and Google Maps.
+  <li>Click below to Login by using a Google account
+  <li>Allow the service to get your location.
+  <li>Look at the map. It should show pins that represent FixMyStreet reports near you that we think might never have been fixed.
+  <li>Walk, drive or cycle until you are at the site of the nearest pin.
+  <li>Click on the pin on your map, and open the link.
+  <li>Select whether the problem is now fixed, not fixed, or whether you can't find it.
+  <li>Win points and appear on our soon-to-be ready League table.
+</ol>
 
 
-        <p>Please email all complaints to /dev/null - we're going to the pub.</p>
+<p>Please email all complaints to /dev/null - we're going to the pub.</p>
 
-        <p>
-            <a href="/openid/login">Login to play!</a>
-        </p>
-
-    </body>
-</html>
+<p>
+  <a href="/openid/login">Login to play!</a>
+</p>
+{% endblock %}
