@@ -34,19 +34,19 @@ function showLocation(position) {
         <p>I think this problem is:</p>\
 \
         <form action="" method="post">\
-            <div style="display:none;"><input type="hidden"  name="csrfmiddlewaretoken" value="' + csrf_token + '" /></div>\
+            <div style="display:none;"><input type="hidden"  id="csrfmiddlewaretoken" name="csrfmiddlewaretoken" value="' + csrf_token + '" /></div>\
             <input type="hidden" name="state" value="fixed">\
             <input type="submit" value="FIXED" />\
         </form>\
         \
         <form action="" method="post">\
-            <div style="display:none;"><input type="hidden"  name="csrfmiddlewaretoken" value="' + csrf_token + '" /></div>\
+            <div style="display:none;"><input type="hidden" id="csrfmiddlewaretoken" name="csrfmiddlewaretoken" value="' + csrf_token + '" /></div>\
             <input type="hidden" name="state" value="notfixed">\
             <input type="submit" value="NOT FIXED" />\
         </form>\
         \
         <form action="" method="post">\
-            <div style="display:none;"><input type="hidden"  name="csrfmiddlewaretoken" value="' + csrf_token + '" /></div>\
+            <div style="display:none;"><input type="hidden" id="csrfmiddlewaretoken"  name="csrfmiddlewaretoken" value="' + csrf_token + '" /></div>\
             <input type="hidden" name="state" value="notfound">\
             <input type="submit" value="CAN\'T FIND" />\
         </form>\
