@@ -15,7 +15,13 @@ def find_nearby_issues( lat=None, lon=None):
     issues  = []
     
     for entry in entries:
-        rss_lat, rss_lon = [float(x) for x in entry['georss_point'].split()]
+        # I have a horrible feeling this is due to differences in versions of feedparser
+        # dealing differently with the georss namespace.
+        try:
+            rss_lat, rss_lon = [float(x) for x in entry['georss_point'].split()]
+        except:
+            rss_lat, rss_lon = [float(x) for x in entry['point'].split()]
+            
     
         rss_id = int( entry['id'].rsplit( '/', 1 )[1] )
     
