@@ -208,6 +208,6 @@ def scoreboard(request):
     else:
         user_score = None
         my_range = []
-    my_range = range(user_score)
+
     return render_to_response('scoreboard.html', {'scores': scores, 'score': user_score, 'range': my_range}, context) 
 
