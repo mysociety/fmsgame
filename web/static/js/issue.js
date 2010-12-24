@@ -4,6 +4,7 @@ var watchID;
 var geoLoc;
 
 function showLocation(position) {
+  var csrf_token = $("#csrfmiddlewaretoken").attr('value')
   var latitude = position.coords.latitude;
   var longitude = position.coords.longitude;
 
@@ -33,16 +34,19 @@ function showLocation(position) {
         <p>I think this problem is:</p>\
 \
         <form action="" method="post">\
+            <div style="display:none;"><input type="hidden"  name="csrfmiddlewaretoken" value="' + csrf_token + '" /></div>\
             <input type="hidden" name="state" value="fixed">\
             <input type="submit" value="FIXED" />\
         </form>\
         \
         <form action="" method="post">\
+            <div style="display:none;"><input type="hidden"  name="csrfmiddlewaretoken" value="' + csrf_token + '" /></div>\
             <input type="hidden" name="state" value="notfixed">\
             <input type="submit" value="NOT FIXED" />\
         </form>\
         \
         <form action="" method="post">\
+            <div style="display:none;"><input type="hidden"  name="csrfmiddlewaretoken" value="' + csrf_token + '" /></div>\
             <input type="hidden" name="state" value="notfound">\
             <input type="submit" value="CAN\'T FIND" />\
         </form>\
