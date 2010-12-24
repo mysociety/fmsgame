@@ -2,14 +2,22 @@
 <html>
     <head>
         <title>Tell us about the problem</title>
+        <script src=/static/js/external/jquery.js></script>
+        <script src=/static/js/external/gears_init.js></script>
+        <script src=/static/js/external/geo.js></script>
+        <script src=/static/js/external/distance.js></script>
+        <script src=/static/js/issue.js></script>
         <meta name="viewport" content="initial-scale=1.0, width=device-width, height=device-height, minimum-scale=1.0" />
     </head>
     <body>
         <h1>Now tell us about the problem!</h1>
         <p><strong>Problem:</strong> {{ issue_title }}</p>
 	<p><strong>Summary:</strong> {{ issue_summary }}</p>
-        <p>Lat: {{ target_lat }} Long: {{ target_long }}
-        <p>
+        <span id="target_lat" value="{{ target_lat }}" />
+        <span id="target_long" value="{{ target_long }}" />
+        <p><strong>Distance: </strong><span id="issue_distance">...calculating...</span></p>
+        <div id="can_we_fix_it"><p>...still working...</p>
+<!--        <p>
             You can <strong>win points</strong>
             by choosing an option below!
         </p>
@@ -32,6 +40,8 @@
         </form>
 
         <img src="/static/fmsgame_trophy.png" alt="FixMyStreet Game" style="margin-top:1em;">
+-->
+        </div>
 
     </body>
 </html>
