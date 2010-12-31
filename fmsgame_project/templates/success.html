@@ -3,10 +3,16 @@
 {% block window_title %}Success!{% endblock %}
 {% block main_title %}Success{% endblock %}
 
+{% block scripts %}
+  <script src=/static/js/external/jquery.js></script>
+  <script src=/static/js/main.js></script>
+{% endblock %}
+
 {% block content %}
   <p>That issue has been marked as <strong>{{ last_issue_status }}</strong>.</p>
   <p>You now have <strong>{{ score }}</strong> point{{ score|pluralize }}.</p>
   <p>
-    Back to <a href="/geolocate">the game!</a>
+    <span id="autolocate_text" value="Back to the game!" />
+    <div id="autolocate_ui">...loading...</div>
   </p>
 {% endblock %}
