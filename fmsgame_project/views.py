@@ -201,11 +201,15 @@ def scoreboard(request):
         except IndexError:
             # This is because the user doesn't have a score yet. Use zero.
             user_score = 0
-
-        my_range = range(user_score)
+        if user_score > 10: # don't show the 10-cone graphic if it's the only graphic: i.e., 11 or higher
+            my_range_of_tens = range(user_score // 10)
+            my_range = range(user_score % 10)
+        else:
+            my_range = range(user_score)
+            my_range_of_tens = []
     else:
         user_score = None
         my_range = []
 
-    return render_to_response('scoreboard.html', {'scores': scores, 'score': user_score, 'range': my_range}, context) 
+    return render_to_response('scoreboard.html', {'scores': scores, 'score': user_score, 'range_of_tens': my_range_of_tens, 'range': my_range}, context) 
 

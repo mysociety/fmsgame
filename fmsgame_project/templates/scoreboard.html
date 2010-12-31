@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block styles %}   
-<style tyle="text/css">
+<style type="text/css">
   table { 
   border: 1px #FFA500 solid;
   border-collapse: collapse;
@@ -32,6 +32,9 @@
   <p>You have {{ score }} point{{ score|pluralize }}.</p>
   {% if score %}
     <div style="border:2px solid #FFA500; padding: 8px; margin-bottom:1em;">
+      {% for x in range_of_tens  %}
+        <img src="/static/fmsgame_trophy_score_x10.png" alt="10 points" />
+      {% endfor %}
       {% for i in range  %}
         <img src="/static/fmsgame_trophy_score.png" alt="1 point" />
       {% endfor %}
