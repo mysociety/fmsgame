@@ -10,6 +10,7 @@ from django.core.urlresolvers import reverse
 from django.template import RequestContext
 from django.views.generic.simple import direct_to_template
 from django.views.decorators.cache import cache_control
+from django.contrib.csrf.middleware import csrf_exempt
 
 import fixmystreet
 import datetime
@@ -25,6 +26,10 @@ states = {'notfound': 'Not Found',
           'notfixed': 'Not Fixed',
           }
 
+# The CSRF protection seems to be causing intermittent trouble with this view
+# on mobile phones, so I'm turning it off. I don't think the consequences of
+# someone forging requests here are all that bad!
+@csrf_exempt
 @login_required
 @cache_control(no_cache=True)
 def issue(request, issue_id=None):
