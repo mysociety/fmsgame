@@ -2,3 +2,5 @@ python-pyrss2gen
 libapache2-mod-wsgi
 python-django
 python-psycopg2
+python-feedparser
+python-beautifulsoup
