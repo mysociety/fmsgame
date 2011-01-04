@@ -1,0 +1,20 @@
+#!/bin/bash
+#
+# django-post-deploy
+#
+# Copyright (c) 2010 UK Citizens Online Democracy. All rights reserved.
+# Email: duncan@mysociety.org; WWW: http://www.mysociety.org/
+
+set -e
+#set -x # debug
+
+APP_DIR=`pwd`
+
+# make sure that there is a project directory
+(
+cd fmsgame_project
+
+# upgrade database
+./manage.py syncdb -v 0
+./manage.py migrate -v 0
+)
