@@ -17,6 +17,3 @@ cd fmsgame_project
 # upgrade database
 ./manage.py syncdb -v 0
 )
-
-git submodule init
-git submodule update
