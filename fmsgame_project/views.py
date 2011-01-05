@@ -211,10 +211,11 @@ def scoreboard(request):
             my_range = range(user_score % 10)
         else:
             my_range = range(user_score)
-            my_range_of_tens = []
+            my_range_of_tens = ()
     else:
         user_score = None
-        my_range = []
+        my_range = ()
+        my_range_of_tens = ()
 
     return render_to_response('scoreboard.html', {'scores': scores, 'score': user_score, 'range_of_tens': my_range_of_tens, 'range': my_range}, context) 
 
