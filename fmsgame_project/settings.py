@@ -6,22 +6,8 @@ import os
 import sys
 package_dir = os.path.abspath(os.path.split(__file__)[0])
 
-paths = (
-    os.path.normpath(package_dir + "/../pylib"),
-    os.path.normpath(package_dir + "/../commonlib/pylib"),
-    )
-
-for path in paths:
-    if path not in sys.path:
-        sys.path.append(path)
-
-try:
     from config_local import config  # put settings in config_local if you're not running in a fill mysociety vhost
     SERVE_STATIC_FILES = True
-except ImportError:
-    SERVE_STATIC_FILES = False
-    from mysociety import config
-    config.set_file(os.path.abspath(package_dir + "/../conf/general"))
 
 # Now follows the normal Django stuff.
 DEBUG = True
