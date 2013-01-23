@@ -1,2 +1,10 @@
-django
+psycopg2
+
+django >= 1.4
 django_openid_auth
+
+python-openid
+
+feedparser
+PyRSS2Gen
+BeautifulSoup
