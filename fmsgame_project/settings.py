@@ -59,7 +59,7 @@ MEDIA_URL = ''
 ADMIN_MEDIA_PREFIX = '/media/'
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'fic59b+!ni(xw2+b)tn!4t5fv#a0jc%rq@10y2(+@f8=*+@9gf'
+SECRET_KEY = config.get('DJANGO_SECRET_KEY')
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
