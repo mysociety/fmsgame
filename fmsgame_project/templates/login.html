@@ -16,7 +16,7 @@
 
 <p>
   {% if not request.user.is_authenticated %}
-    <a href="/openid/login">Login to play!</a>
+    <a href="{% url openid-login %}">Login to play!</a>
   {% endif %}
 </p>
 
@@ -43,7 +43,7 @@
     <span id="autolocate_text" value="Locate me now!" />
     <div id="autolocate_ui">...loading...</div>
   {% else %}
-    <a href="/openid/login">Login to play!</a>
+    <a href="{% url openid-login %}">Login to play!</a>
   {% endif %}
 </p>
 {% endblock %}
