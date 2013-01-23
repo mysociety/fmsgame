@@ -63,3 +63,8 @@ createdb fmsgame
 ./manage.py syncdb
 ```
 
+```bash
+# Fire up the server!
+./manage.py runserver
+```
+
