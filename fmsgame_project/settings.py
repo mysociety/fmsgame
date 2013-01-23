@@ -6,8 +6,8 @@ import os
 import sys
 package_dir = os.path.abspath(os.path.split(__file__)[0])
 
-    from config_local import config  # put settings in config_local if you're not running in a fill mysociety vhost
-    SERVE_STATIC_FILES = True
+from config_local import config  # put settings in config_local if you're not running in a fill mysociety vhost
+SERVE_STATIC_FILES = True
 
 # Now follows the normal Django stuff.
 DEBUG = True
@@ -19,13 +19,18 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASE_ENGINE   = 'postgresql_psycopg2'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME     = config.get('FMSGAME_DB_NAME')
-DATABASE_USER     = config.get('FMSGAME_DB_USER')
-DATABASE_PASSWORD = config.get('FMSGAME_DB_PASS')
-DATABASE_HOST     = config.get('FMSGAME_DB_HOST')
-DATABASE_PORT     = config.get('FMSGAME_DB_PORT')
 FMS_URL           = config.get('FMSGAME_FMS_URL')
+
+DATABASES = {
+    'default': {
+        'ENGINE':  'django.db.backends.postgresql_psycopg2',
+        'NAME':     config.get('FMSGAME_DB_NAME'),
+        'USER':     config.get('FMSGAME_DB_USER'),
+        'PASSWORD': config.get('FMSGAME_DB_PASS'),
+        'HOST':     config.get('FMSGAME_DB_HOST'),
+        'PORT':     config.get('FMSGAME_DB_PORT'),
+    }
+}
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
