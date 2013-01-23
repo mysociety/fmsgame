@@ -10,7 +10,7 @@ from django.core.urlresolvers import reverse
 from django.template import RequestContext
 from django.views.generic.simple import direct_to_template
 from django.views.decorators.cache import cache_control
-from django.contrib.csrf.middleware import csrf_exempt
+from django.views.decorators.csrf import csrf_exempt
 
 import fixmystreet
 import datetime
